@@ -1,7 +1,7 @@
 === Backup Guard ===
 Contributors: BackupGuard
 Donate link: https://backup-guard.com/
-Tags: backup, backup mysql, backup database, restoration, restore, automated, rollback, backup scheduler, backup files, wordpress backup, backup plugin, dropbox, google drive, ftp
+Tags: backup, backup mysql, backup database, restoration, restore, automated, rollback, backup scheduler, backup files, wordpress backup, backup plugin, dropbox, dropbox backup, google drive, ftp
 Requires at least: 3.8
 Tested up to: 4.2.2
 Stable tag: 1.0.0
