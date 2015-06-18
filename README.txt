@@ -12,7 +12,7 @@ Backup Guard for WordPress is the best backup choice for WordPress based website
 
 == Description ==
 
-Backup Guard is the most complete backup choice for WordPress. We offer the easiest way to backup and restore your WordPress based website or blog.
+Backup Guard is the most complete backup choice for WordPress. We offer the easiest way to <strong>backup</strong> and <strong>restore</strong> your WordPress based website or blog.
 
 <h4>One Click Backup</h4>
 <p>Perform full or custom backups of your site with just one click. We don't have issues with large files or databases thanks to our own archive format.</p>
