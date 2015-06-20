@@ -75,7 +75,7 @@ Backup Guard is the most complete backup choice for WordPress. We offer the easi
 <li><b>Ability to cancel the backup process if desired</b></li>
 </ul>
 
-<h4>Min. requirements</h4>
+<h4>Min. requirements for Backup Guard</h4>
 <p>PHP 5.3, zlib, WordPress 3.8</p>
 
 <h4>Support</h4>
