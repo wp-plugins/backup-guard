@@ -1,7 +1,7 @@
 === Backup Guard ===
 Contributors: BackupGuard
 Donate link: https://backup-guard.com/
-Tags: backup, backup mysql, backup database, restoration, restore, automated, rollback, backup scheduler, backup files, wordpress backup, backup plugin, dropbox backup, google drive, ftp, cloud backup, google drive backup
+Tags: backup, back up, backup database, backup files, backup mysql, backup plugin, backup posts, cloud backup, db backup, dropbox backup, dump, ftp backup, full backup, google drive backup, page backup, restoration, restore, rollback, scheduled backup, wordpress backup
 Requires at least: 3.8
 Tested up to: 4.2.2
 Stable tag: 1.0.0
@@ -74,6 +74,9 @@ Backup Guard is the most complete backup choice for WordPress. We offer the easi
 <li><b>Precise progress tracking</b></li>
 <li><b>Ability to cancel the backup process if desired</b></li>
 </ul>
+
+<h4>Min. requirements</h4>
+<p>PHP 5.3, zlib, WordPress 3.8</p>
 
 <h4>Support</h4>
 <p><a href="https://backup-guard.com/support">https://backup-guard.com/support</a></p>
