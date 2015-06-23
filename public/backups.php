@@ -6,6 +6,10 @@ $backups = SGBackup::getAllBackups();
 $downloadUrl = admin_url('admin-post.php?action=backup_guard_downloadBackup&');
 ?>
 <?php require_once(SG_PUBLIC_INCLUDE_PATH.'sidebar.php'); ?>
+<?php if(SGConfig::get('SG_REVIEW_POPUP_STATE') == SG_SHOW_REVIEW_POPUP): ?>
+    <a href="javascript:void(0)" id="sg-review" class="hidden" data-toggle="modal" data-modal-name="manual-review" data-remote="modalReview"></a>
+    <script type="text/javascript">sgShowReview = 1;</script>
+<?php endif; ?>
 <div id="sg-content-wrapper">
     <div class="container-fluid">
         <fieldset>
@@ -17,6 +21,7 @@ $downloadUrl = admin_url('admin-post.php?action=backup_guard_downloadBackup&');
                 <thead>
                 <tr>
                     <th><?php _t('Filename')?></th>
+                    <th><?php _t('Size')?></th>
                     <th><?php _t('Date')?></th>
                     <th><?php _t('Status')?></th>
                     <th><?php _t('Actions')?></th>
@@ -25,12 +30,13 @@ $downloadUrl = admin_url('admin-post.php?action=backup_guard_downloadBackup&');
                 <tbody>
                 <?php if(empty($backups)):?>
                     <tr>
-                        <td colspan="4"><?php _t('No backups found.')?></td>
+                        <td colspan="5"><?php _t('No backups found.')?></td>
                     </tr>
                 <?php endif;?>
                 <?php foreach($backups as $backup): ?>
                     <tr>
                         <td><?php echo $backup['name'] ?></td>
+                        <td><?php echo !$backup['active']?$backup['size']:'' ?></td>
                         <td><?php echo $backup['date'] ?></td>
                         <td id="sg-status-tabe-data" <?php echo $backup['active']?'data-toggle="tooltip" data-placement="top" data-original-title="" data-container="#sg-wrapper"':''?>>
                             <?php if($backup['active']):

@@ -6,5 +6,5 @@
     {
         $actionId = (int)$_POST['actionId'];
         SGBackup::cancelAction($actionId);
-        die('1');
+        die('{"success":1}');
     }

@@ -247,6 +247,11 @@ class SGBackup implements SGIBackupDelegate
 
     private function didFinishBackup()
     {
+        if(SGConfig::get('SG_REVIEW_POPUP_STATE') != SG_NEVER_SHOW_REVIEW_POPUP)
+        {
+            SGConfig::set('SG_REVIEW_POPUP_STATE', SG_SHOW_REVIEW_POPUP);
+        }
+
         $action = $this->didFindWarnings()?SG_ACTION_STATUS_FINISHED_WARNINGS:SG_ACTION_STATUS_FINISHED;
         self::changeActionStatus($this->actionId, $action);
 
@@ -379,6 +384,7 @@ class SGBackup implements SGIBackupDelegate
         if ($this->databaseBackupAvailable)
         {
             self::changeActionStatus($this->actionId, SG_ACTION_STATUS_IN_PROGRESS_DB);
+            sleep(3);
             $this->backupDatabase->restore($this->databaseBackupPath);
         }
 
@@ -531,7 +537,6 @@ class SGBackup implements SGIBackupDelegate
                 $allBackups[$row['name']][] = $row;
             }
 
-            $i = 0;
             while (($file = readdir($handle)) !== false)
             {
                 if ($file === '.')
@@ -627,9 +632,17 @@ class SGBackup implements SGIBackupDelegate
                         $backup['restore_error'] = 0;
                     }
 
+                    $size = '';
+                    if ($backup['files'])
+                    {
+                        $size = number_format(realFilesize($path.$file.'/'.$file.'.sgbp')/1024.0/1024.0, 2, '.', '').' MB';
+                    }
+
+                    $backup['size'] = $size;
+
                     $modifiedTime = filemtime($path.$file.'/.');
                     $backup['date'] = @date('Y-m-d H:i', $modifiedTime);
-                    $backups[$modifiedTime.($i++)] = $backup;
+                    $backups[$modifiedTime] = $backup;
                 }
             }
             closedir($handle);

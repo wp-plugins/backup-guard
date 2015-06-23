@@ -602,3 +602,19 @@ only screen and (min-resolution: 240dpi) {
     text-align: center;
     margin-top: 20px;
 }
+.sg-star{
+    color: gold;
+    font-size: 24px;
+}
+.sg-no-margin-bottom{
+    margin-bottom: 0 !important;
+}
+.sg-btn-grey{
+    background-color: #999;
+    border-color: #999;
+    color: #ffffff;
+}
+.sg-btn-grey:hover{
+    background-color: #777;
+    border-color: #777;
+}

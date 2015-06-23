@@ -10,7 +10,7 @@ class SGBoot
     public static function init()
     {
         //remove execution time limit
-        set_time_limit(0);
+        @set_time_limit(0);
 
         //set default exception handler
         SGExceptionHandler::init();

@@ -15,5 +15,6 @@ define('SG_BACKUP_MAX_FILE_UPLOAD_SIZE', 100); // in megabytes
 @ini_set('upload_max_filesize',SG_BACKUP_MAX_FILE_UPLOAD_SIZE.'M');
 @ini_set('post_max_size',SG_BACKUP_MAX_FILE_UPLOAD_SIZE.'M');
 
-//Backup Guard Site URL
-define('SG_BACKUP_SITE_URL','http://backup-guard.com');
+//Review popup states
+define('SG_SHOW_REVIEW_POPUP', 1);
+define('SG_NEVER_SHOW_REVIEW_POPUP', 2);

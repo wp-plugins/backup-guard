@@ -3,6 +3,20 @@
     require_once(SG_BACKUP_PATH.'SGBackup.php');
     if(isAjax())
     {
-        SGConfig::set('SG_RUNNING_ACTION', 0, true);
-        die('{"success":1}');
+        $error = array();
+        try
+        {
+            //Check if any running action
+            $runningAction = getRunningActions();
+            if ($runningAction) {
+                throw new SGException(_t('There is already another process running.', true));
+            }
+            SGConfig::set('SG_RUNNING_ACTION', 0, true);
+            die('{"success":1}');
+        }
+        catch(SGException $exception)
+        {
+            array_push($error, $exception->getMessage());
+            die(json_encode($error));
+        }
     }

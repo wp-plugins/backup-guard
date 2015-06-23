@@ -3,12 +3,10 @@
     require_once(SG_BACKUP_PATH.'SGBackup.php');
     if(isAjax())
     {
-        $runningActions = SGBackup::getRunningActions();
-        $isAnyActiveActions = count($runningActions);
-        if($isAnyActiveActions)
+        $runningAction = getRunningActions();
+        if($runningAction)
         {
-            $activeBackup = $runningActions[0];
-            die(json_encode($activeBackup));
+            die(json_encode($runningAction));
         }
         die('0');
     }

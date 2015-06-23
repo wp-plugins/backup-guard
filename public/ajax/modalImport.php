@@ -1,7 +1,7 @@
 <?php
 require_once(dirname(__FILE__).'/../boot.php');
-$backupDirectory = SGConfig::get('SG_BACKUP_DIRECTORY');
-$maxUploadSize = ini_get('upload_max_filesize');
+    $backupDirectory = SGConfig::get('SG_BACKUP_DIRECTORY');
+    $maxUploadSize = ini_get('upload_max_filesize');
 ?>
 <div class="modal-dialog">
     <div class="modal-content">
@@ -30,8 +30,8 @@ $maxUploadSize = ini_get('upload_max_filesize');
             <div class="clearfix"></div>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal"><?php _t('Close')?></button>
-            <button type="button" data-remote="importBackup" id="uploadSgbpFile" class="btn btn-primary"><?php _t('Upload')?></button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" data-remote="importBackup" id="uploadSgbpFile" class="btn btn-primary"><?php echo _t('Upload')?></button>
         </div>
     </div>
 </div>

@@ -84,3 +84,15 @@ function convertToBytes($from){
             return $from;
     }
 }
+
+function getRunningActions()
+{
+    $runningActions = SGBackup::getRunningActions();
+    $isAnyActiveActions = count($runningActions);
+    if($isAnyActiveActions)
+    {
+        $activeBackup = $runningActions[0];
+        return $activeBackup;
+    }
+    return false;
+}

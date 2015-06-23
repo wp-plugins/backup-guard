@@ -1,6 +1,11 @@
 sgBackup = {};
 sgBackup.isModalOpen = false;
 SG_CURRENT_ACTIVE_AJAX = '';
+
+jQuery(window).load(function() {
+    sgBackup.showReviewModal();
+});
+
 jQuery(document).ready( function() {
     sgBackup.init();
 });
@@ -34,10 +39,15 @@ sgBackup.initModals = function(){
             if (error===false) {
                 jQuery('#sg-modal').append(data);
             }
-            modal.one('hidden.bs.modal', function() {
+            modal.on('hide.bs.modal', function() {
                 if(SG_CURRENT_ACTIVE_AJAX != '') {
+                    if (!confirm('Are you sure you want to cancel?')) {
+                        return false;
+                    }
                     SG_CURRENT_ACTIVE_AJAX.abort();
                 }
+            });
+            modal.one('hidden.bs.modal', function() {
                 modal.html('');
             }).modal('show');
             sgBackup.didOpenModal(modalName);
@@ -61,8 +71,29 @@ sgBackup.didOpenModal = function(modalName){
             }
         })
     }
-    else if(modalName == ''){
+    else if(modalName == 'manual-review'){
+        var action = 'setReviewPopupState';
+        jQuery('#sgLeaveReview').click(function(){
+            var reviewUrl = jQuery(this).attr('data-review-url');
+            //Never show again
+            var reviewState = 2;
+            var ajaxHandler = new sgRequestHandler(action, {reviewState: reviewState});
+            ajaxHandler.run();
+            window.open(reviewUrl);
+        });
 
+        jQuery('#sgDontAskAgain').click(function(){
+            //Never show again
+            var reviewState = 2;
+            var ajaxHandler = new sgRequestHandler(action, {reviewState: reviewState});
+            ajaxHandler.run();
+        });
+
+        jQuery('#sgAskLater').click(function(){
+            var reviewState = 0;
+            var ajaxHandler = new sgRequestHandler(action, {reviewState: reviewState});
+            ajaxHandler.run();
+        });
     }
 };
 
@@ -87,11 +118,15 @@ sgBackup.alertGenerator = function(content, alertClass){
 };
 
 sgBackup.scrollToElement = function(id){
-    if(jQuery(id).length) {
-        // Scroll
-        jQuery('html,body').animate({
-            scrollTop: jQuery(id).offset().top
-        }, 'slow');
+    if(jQuery(id).position()){
+        if(jQuery(id).position().top < jQuery(window).scrollTop()){
+            //scroll up
+            jQuery('html,body').animate({scrollTop:jQuery(id).position().top}, 1000);
+        }
+        else if(jQuery(id).position().top + jQuery(id).height() > jQuery(window).scrollTop() + (window.innerHeight || document.documentElement.clientHeight)){
+            //scroll down
+            jQuery('html,body').animate({scrollTop:jQuery(id).position().top - (window.innerHeight || document.documentElement.clientHeight) + jQuery(id).height() + 15}, 1000);
+        }
     }
 };
 
@@ -112,3 +147,9 @@ less.pageLoadFinished.then(
         jQuery('.sg-spinner').remove();
     }
 );
+
+sgBackup.showReviewModal = function(){
+    if(typeof sgShowReview != 'undefined') {
+        jQuery('#sg-review').trigger("click");
+    }
+};

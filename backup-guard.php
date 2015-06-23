@@ -4,7 +4,7 @@
  * Plugin Name:       Backup Guard
  * Plugin URI:        https://backup-guard.com/products/backup-wordpress
  * Description:       Backup Guard for WordPress is the best backup choice for WordPress based websites or blogs.
- * Version:           1.0.0
+ * Version:           1.0.1
  * Author:            Backup Guard
  * Author URI:        https://backup-guard.com
  * License:           GPL-2.0+
@@ -46,6 +46,8 @@ else
 }
 
 function backup_guard_admin_menu() {
+    //add_menu_page( $page_title, $menu_title, $capability, $menu_slug, $function, $icon_url, $position );
+    //add_submenu_page( $parent_slug, $page_title, $menu_title, $capability, $menu_slug, $function );
     add_menu_page('Backups', 'Backup Guard', 'manage_options', 'backup_guard_backups', 'backup_guard_backups_page', 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeD0iMHB4IiB5PSIwcHgiIHZpZXdCb3g9IjAgMCA0NjIuOSA1MDEuNCIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwIDAgNDYyLjkgNTAxLjQiIHhtbDpzcGFjZT0icHJlc2VydmUiPjxwYXRoIGZpbGw9IiNhMGE1YWEiIGQ9Ik00MjYuOSwxOTkuNmgtMTk4bDAuNCwzNEgyNDZoMTYyLjdjLTAuNSwzLjMtMS4xLDYuNi0xLjcsOS45Yy02LjEsMzMtMTUuMyw2Mi4yLTI3LjcsODcuNkg3OS40Yy0xMi4zLTI1LjQtMjEuNi01NC42LTI3LjctODcuNkMzOS4zLDE3Ni4xLDQ0LDExMS41LDQ3LjIsODMuN0M2Ny43LDkwLjUsODguMyw5NCwxMDguNiw5NGM2MC43LDAsMTAzLjMtMzAuMiwxMjAuOC00NS4xQzI0Ni43LDYzLjgsMjg5LjQsOTQsMzUwLjEsOTRoMGMyMC4zLDAsNDAuOS0zLjUsNjEuNC0xMC4zYzEuNiwxMy45LDMuNSwzNy4xLDMuNiw2NS4xaDIzLjdjMC00Ny40LTUuNS04MS4xLTUuOC04My4zbC0yLjQtMTQuNmwtMTMuNyw1LjZjLTIyLjQsOS4yLTQ0LjgsMTMuOC02Ni43LDEzLjhjMCwwLDAsMCwwLDBjLTY4LjMsMC0xMTEuNy00NS4zLTExMi4xLTQ1LjdsLTguNi05LjJsLTguNyw5LjJjLTAuNCwwLjUtNDMuOCw0NS43LTExMi4xLDQ1LjdjLTIxLjksMC00NC40LTQuNi02Ni43LTEzLjhsLTEzLjctNS42bC0yLjQsMTQuNmMtMC42LDMuNi0xNC40LDg4LjcsMi42LDE4MS42QzM4LjUsMzAyLjQsNTcuNSwzNDguOCw4NC44LDM4NWMzNC42LDQ1LjgsODIuNCw3NS4zLDE0Mi4xLDg3LjdsMi40LDAuNWwyLjQtMC41YzU5LjctMTIuMywxMDcuNS00MS44LDE0Mi4xLTg3LjdjMjcuNC0zNi4zLDQ2LjQtODIuNyw1Ni41LTEzNy45YzMtMTYuMiw1LTMyLjIsNi4zLTQ3LjVMNDI2LjksMTk5LjZMNDI2LjksMTk5LjZ6Ii8+PC9zdmc+', 71);
     add_submenu_page( 'backup_guard_backups', 'Backups', 'Backups', 'manage_options', 'backup_guard_backups', 'backup_guard_backups_page');
     if(SGBoot::isFeatureAvailable('STORAGE'))
@@ -131,6 +133,7 @@ add_action( 'wp_ajax_backup_guard_modalImport', 'backup_guard_get_import_modal')
 add_action( 'wp_ajax_backup_guard_modalFtpSettings', 'backup_guard_get_ftp_modal');
 add_action( 'wp_ajax_backup_guard_modalPrivacy', 'backup_guard_get_privacy_modal');
 add_action( 'wp_ajax_backup_guard_modalTerms', 'backup_guard_get_terms_modal');
+add_action( 'wp_ajax_backup_guard_modalReview', 'backup_guard_get_review_modal');
 
 function backup_guard_get_manual_modal(){
     require_once(SG_PUBLIC_AJAX_PATH.'modalManualBackup.php');
@@ -156,6 +159,11 @@ function backup_guard_get_terms_modal(){
     exit();
 }
 
+function backup_guard_get_review_modal(){
+    require_once(SG_PUBLIC_AJAX_PATH.'modalReview.php');
+    exit();
+}
+
 // adding actions to handle ajax and post requests
 add_action( 'wp_ajax_backup_guard_cancelBackup', 'backup_guard_cancel_backup');
 add_action( 'wp_ajax_backup_guard_checkBackupCreation', 'backup_guard_check_backup_creation');
@@ -177,6 +185,7 @@ add_action( 'wp_ajax_backup_guard_restore', 'backup_guard_restore');
 add_action( 'wp_ajax_backup_guard_saveCloudFolder', 'backup_guard_save_cloud_folder');
 add_action( 'wp_ajax_backup_guard_schedule', 'backup_guard_schedule');
 add_action( 'wp_ajax_backup_guard_settings', 'backup_guard_settings');
+add_action( 'wp_ajax_backup_guard_setReviewPopupState', 'backup_guard_set_review_popup_state');
 //action for schedule
 add_action( 'backup_guard_schedule_action', 'backup_guard_scheduleAction');
 
@@ -263,6 +272,10 @@ function backup_guard_schedule(){
 
 function backup_guard_settings(){
     require_once(SG_PUBLIC_AJAX_PATH.'settings.php');
+}
+
+function backup_guard_set_review_popup_state(){
+    require_once(SG_PUBLIC_AJAX_PATH.'setReviewPopupState.php');
 }
 
 //schedule

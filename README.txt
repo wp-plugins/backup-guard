@@ -1,10 +1,11 @@
 === Backup Guard ===
+Plugin Name: Backup Guard
 Contributors: BackupGuard
 Donate link: https://backup-guard.com/
 Tags: backup, back up, backup database, backup files, backup mysql, backup plugin, backup posts, cloud backup, db backup, dropbox backup, dump, ftp backup, full backup, google drive backup, page backup, restoration, restore, rollback, scheduled backup, wordpress backup
 Requires at least: 3.8
 Tested up to: 4.2.2
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -154,5 +155,74 @@ Although we don't offer server migration feature, Backup Guard creates an exact 
 
 == Changelog ==
 
+= 1.0.1 =
+* Show backup size
+* Don't allow multiple actions (backup/restore) at the same time
+* Ask before closing import popup
+* Changed spinner image
+* Added review modal
+
 = 1.0 =
 * Initial commit.
+
+== Documentation ==
+<p><strong>Perform manual backup</strong><br>
+If you want to create a backup manually, follow these steps:</p>
+
+<p>
+1. Click on the green "Perform manual backup" button.<br>
+2. Select "Full backup" if you want to perform a full backup of your website (files and database), otherwise select "Custom backup" to be able to choose what you really want to backup.<br>
+3. (PRO) Select "Upload to cloud" option if you want to upload your backup to any of your already connected clouds. Note: "Background mode" option will give you the possibility to backup in a low priority mode, consuming fewer resources from your system.<br>
+4. Click on the "Backup" button to start the backup.<br>
+5. You will be able to see the progress of each step and cancel the backup if needed.
+</p>
+
+<p><strong>Import backups from local computer</strong><br>
+If you have an SGBP file in your PC and you want to import it into your website, follow these steps:</p>
+
+<p>
+1. Click on the blue "Import" button.<br>
+2. Browse the file in your local computer. There are 2 things to notice here: a) the maximum upload size will vary depending on the server your website is running on, b) a path is indicated where you can easily upload your file using an FTP client of your preference (the file will be automatically detected).<br>
+3. Press the "Upload" button and wait for your file to be uploaded.
+</p>
+
+<p><strong>Restore</strong><br>
+Restoring is as easy as backing up. Just follow these instructions:</p>
+
+<p>
+1. Localize the backup file you want to restore from.<br>
+2. Click on the green restore button.<br>
+3. After confirmation, the restore progress will start. Note: it is highly recommended that you don't do anything else during the restore progress, because the site is in alteration process and any secondary action can affect its correct restoration.
+</p>
+
+<p><strong>Authorize and connect to Google Drive or Dropbox (PRO)</strong><br>
+If you want to be able to upload backups to cloud, you must authorize first:</p>
+
+<p>
+1. Go to the "Cloud" section.<br>
+2. Turn on the switch of the cloud you want to enable.<br>
+3. You will be redirected to the website in question (where you can grant access to your account).<br>
+4. After that, you will be redirected back to your website, where the switch has turned on.<br>
+5. Starting from now, you will be able to choose this cloud as an upload destination of your backup files. Note: you can change the name of the destination folder at the top of the "Cloud" section.
+</p>
+
+<p><strong>Authorize and connect to FTP (PRO)</strong><br>
+Follow these instructions if you want to be able to upload your backups directly to your FTP server:</p>
+
+<p>
+1. Once in the "Cloud" section, turn on the switch next to FTP.<br>
+2. Fill in the required data to be able to connect to your FTP server.<br>
+3. Click on the "Save" button. A connection attempt will be made, and after success, the popup will close and the switch will turn on.
+</p>
+
+<p><strong>Automatization of backups (PRO)</strong><br>
+If you want to schedule your backups, these are the steps to follow:</p>
+
+<p>
+1. Go to the "Schedule" section. Once there, you will see that the switch is turned off.<br>
+2. Turn on the switch next to "Scheduled backup".<br>
+3. Select the frequency and time you desire. The other options are exactly the same as in manual backup popup.<br>
+4. Hit the "Save" button and you are ready to go. Note: please make sure that cron is enabled and working on your server, otherwise scheduled backups won't work.
+</p>
+
+<p><strong><a href="https://backup-guard.com/support/documentation">Full documentation</a></strong></p>

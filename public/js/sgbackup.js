@@ -37,8 +37,8 @@ sgBackup.manualBackup = function(){
     }
     //If any error show it and abort ajax
     if(error.length){
-        var alert = sgBackup.alertGenerator(error, 'alert-danger');
-        jQuery('#sg-modal .modal-header').prepend(alert);
+        var sgAlert = sgBackup.alertGenerator(error, 'alert-danger');
+        jQuery('#sg-modal .modal-header').prepend(sgAlert);
         return false;
     }
 
@@ -50,9 +50,17 @@ sgBackup.manualBackup = function(){
     //Reset Status
     var resetStatusHandler = new sgRequestHandler('resetStatus', {});
     resetStatusHandler.callback = function(response, error){
-    	var manualBackupForm = jQuery('#manualBackup');
+        var manualBackupForm = jQuery('#manualBackup');
         var manualBackupHandler = new sgRequestHandler('manualBackup',manualBackupForm.serialize());
         manualBackupHandler.dataIsObject = false;
+        //If error
+        if(typeof response.success === 'undefined') {
+            var sgAlert = sgBackup.alertGenerator(response, 'alert-danger');
+            jQuery('#sg-modal .modal-header').prepend(sgAlert);
+            alert(response);
+            location.reload();
+            return false;
+        }
         manualBackupHandler.run();
         sgBackup.checkBackupCreation();
     };
@@ -246,7 +254,7 @@ sgBackup.checkBackupCreation = function(){
     var sgBackupCreationHandler = new sgRequestHandler('checkBackupCreation', {});
     sgBackupCreationHandler.dataType = 'html';
     sgBackupCreationHandler.callback = function(response){
-    	jQuery('#sg-modal').modal('hide');
+        jQuery('#sg-modal').modal('hide');
         location.reload();
     };
     sgBackupCreationHandler.run();
@@ -286,12 +294,18 @@ sgBackup.initRestore = function(){
         if (confirm('Are you sure?')){
             sgBackup.showAjaxSpinner('#sg-content-wrapper');
             var resetStatusHandler = new sgRequestHandler('resetStatus');
-    	    resetStatusHandler.callback = function(response) {
-    	        var restoreHandler = new sgRequestHandler('restore',{bname: bname});
-    	        restoreHandler.run();
-    	        sgBackup.checkRestoreCreation();
-    	    };
-	        resetStatusHandler.run();
+            resetStatusHandler.callback = function(response) {
+                //If error
+                if(typeof response.success === 'undefined') {
+                    alert(response);
+                    location.reload();
+                    return false;
+                }
+                var restoreHandler = new sgRequestHandler('restore',{bname: bname});
+                restoreHandler.run();
+                sgBackup.checkRestoreCreation();
+            };
+            resetStatusHandler.run();
         }
     });
 };
@@ -405,7 +419,6 @@ sgBackup.initBackupDeletion = function(){
             backupName = btn.attr('data-sgbackup-name');
         if (confirm('Are you sure?')) {
             var ajaxHandler = new sgRequestHandler(url, {backupName: backupName});
-            sgBackup.showAjaxSpinner('#sg-content-wrapper');
             ajaxHandler.callback = function (response) {
                 location.reload();
             };
