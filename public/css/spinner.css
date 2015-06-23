@@ -1,0 +1,12 @@
+.sg-spinner {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 1010;
+    padding: 10px;
+    background-color: transparent;
+    width: 32px;
+    height: 32px;
+    background-image: url('../img/sg-ajax-loader.gif');
+    background-repeat: no-repeat;
+}
