@@ -45,6 +45,7 @@ sgBackup.initModals = function(){
                         return false;
                     }
                     SG_CURRENT_ACTIVE_AJAX.abort();
+                    SG_CURRENT_ACTIVE_AJAX = '';
                 }
             });
             modal.one('hidden.bs.modal', function() {
@@ -110,7 +111,7 @@ sgBackup.alertGenerator = function(content, alertClass){
             sgalert+=value+'<br/>';
         });
     }
-    else{
+    else if(content != ''){
         sgalert+=content.replace('[','').replace(']','').replace('"','');
     }
     sgalert+='</div>';
