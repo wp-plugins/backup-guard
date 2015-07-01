@@ -353,7 +353,9 @@ sgBackup.getActionProgress = function(actionId){
             var progressInPercents = response.progress+'%';
             progressBar.width(progressInPercents);
             sgBackup.statusUpdate(statusTooltip, response, progressInPercents);
-            sgActionHandler.run();
+            setTimeout(function () {
+                sgActionHandler.run();
+            }, SG_AJAX_REQUEST_FREQUENCY);
         }
         else{
             sgRunningActionsHandler.run();

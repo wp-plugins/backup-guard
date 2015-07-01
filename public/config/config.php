@@ -18,3 +18,6 @@ define('SG_BACKUP_MAX_FILE_UPLOAD_SIZE', 100); // in megabytes
 //Review popup states
 define('SG_SHOW_REVIEW_POPUP', 1);
 define('SG_NEVER_SHOW_REVIEW_POPUP', 2);
+
+//Ajax frequency
+define('SG_AJAX_DEFAULT_REQUEST_FREQUENCY', '2000'); //in miliseconds

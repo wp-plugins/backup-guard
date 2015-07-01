@@ -8,6 +8,9 @@ jQuery(window).load(function() {
 
 jQuery(document).ready( function() {
     sgBackup.init();
+    if(typeof SG_AJAX_REQUEST_FREQUENCY === 'undefined'){
+        SG_AJAX_REQUEST_FREQUENCY = 2000;
+    }
 });
 
 //SG init

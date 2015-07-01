@@ -4,7 +4,7 @@
  * Plugin Name:       Backup Guard
  * Plugin URI:        https://backup-guard.com/products/backup-wordpress
  * Description:       Backup Guard for WordPress is the best backup choice for WordPress based websites or blogs.
- * Version:           1.0.1
+ * Version:           1.0.2
  * Author:            Backup Guard
  * Author URI:        https://backup-guard.com
  * License:           GPL-2.0+
@@ -58,10 +58,7 @@ function backup_guard_admin_menu() {
     {
         add_submenu_page('backup_guard_backups', 'Schedule', 'Schedule', 'manage_options', 'backup_guard_schedule', 'backup_guard_schedule_page');
     }
-    if(SGBoot::isFeatureAvailable('NOTIFICATIONS'))
-    {
-        add_submenu_page('backup_guard_backups', 'Settings', 'Settings', 'manage_options', 'backup_guard_settings', 'backup_guard_settings_page');
-    }
+    add_submenu_page('backup_guard_backups', 'Settings', 'Settings', 'manage_options', 'backup_guard_settings', 'backup_guard_settings_page');
 }
 
 //Backups Page
@@ -115,7 +112,9 @@ function enqueue_backup_guard_scripts($hook) {
     wp_enqueue_style('backup-guard-less', plugin_dir_url( __FILE__ ).'public/css/sgstyles.less');
     add_filter('style_loader_tag', 'backup_guard_less_loader');
 
-    echo '<script type="text/javascript">sgBackup={};SG_AJAX_URL = "'.SG_PUBLIC_AJAX_URL.'";';
+    echo '<script type="text/javascript">sgBackup={}; SG_AJAX_URL = "'.SG_PUBLIC_AJAX_URL.'";';
+    $sgAjaxRequestFrequency = SGConfig::get('SG_AJAX_REQUEST_FREQUENCY')?SGConfig::get('SG_AJAX_REQUEST_FREQUENCY'):SG_AJAX_DEFAULT_REQUEST_FREQUENCY;
+    echo 'SG_AJAX_REQUEST_FREQUENCY = "'.$sgAjaxRequestFrequency.'";';
     echo 'function getAjaxUrl(url) {'.
         'if (url==="cloudDropbox" || url==="cloudGdrive") return "'.admin_url('admin-post.php?action=backup_guard_').'"+url;'.
         'return "'.admin_url('admin-ajax.php').'";}</script>';

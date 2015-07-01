@@ -48,7 +48,7 @@ select {
     float: left;
     width: calc(~"100% - 210px"); /*Same as sidebar*/
     border-left: 1px #333333 solid;
-    min-height: 450px;
+    min-height: 454px;
     background-color: #ffffff;
 }
 #sg-content-wrapper .container-fluid{
@@ -609,6 +609,11 @@ only screen and (min-resolution: 240dpi) {
 .sg-no-margin-bottom{
     margin-bottom: 0 !important;
 }
+
+.sg-no-padding-left{
+    padding-left: 0 !important;
+}
+
 .sg-btn-grey{
     background-color: #999;
     border-color: #999;

@@ -2,10 +2,10 @@
 Plugin Name: Backup Guard
 Contributors: BackupGuard
 Donate link: https://backup-guard.com/
-Tags: backup, back up, backup database, backup files, backup mysql, backup plugin, backup posts, cloud backup, db backup, dropbox backup, dump, ftp backup, full backup, google drive backup, page backup, restoration, restore, rollback, scheduled backup, wordpress backup
+Tags: backup, back up, backup database, backup files, backup mysql, backup plugin, backup posts, cloud backup, db backup, dropbox backup, dump, ftp backup, full backup, google drive backup, page backup, restoration, restore, rollback, scheduled backup, wordpress backup, complete backup, wp backup
 Requires at least: 3.8
 Tested up to: 4.2.2
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -13,33 +13,7 @@ Backup Guard for WordPress is the best backup choice for WordPress based website
 
 == Description ==
 
-= Backup Guard =
-
 Backup Guard is the most complete back up choice for WordPress. We offer the easiest way to <strong>backup</strong> and <strong>restore</strong> your WordPress based website or blog. You can backup your files, database or both.
-
-<h4>One Click Backup</h4>
-<p>Perform full or custom backups of your site with just one click. We don't have issues with large files or databases thanks to our own archive format.</p>
-
-<h4>Reliable Restore</h4>
-<p>No backup is good if it cannot be restored. Our software has been tested in dozens of different environments and restoration is just as good as backup.</p>
-
-<h4>Download/Upload</h4>
-<p>You can download any of your existing backups whenever you want. Also, you are able to import backups by using our wizard or just copying the files to the specified folder.</p>
-
-<h4>Upload to Cloud (PRO)</h4>
-<p>We provide an easy and reliable way to secure your irreplaceable documents and media: automatically upload them to any cloud of your choice.</p>
-
-<h4>Automatization (PRO)</h4>
-<p>Schedule your backup tasks to be performed automatically by your server. Your scheduled backups can also be customized and get uploaded to clouds.</p>
-
-<h4>Customization (PRO)</h4>
-<p>Any backup task can be fully customized. You choose the files/folders to back up, whether to backup database, clouds to upload to and more.</p>
-
-<h4>Background Mode (PRO)</h4>
-<p>When background mode is active, your backup/restore process will consume less CPU resources and therefore allow them to be used by other processes.</p>
-
-<h4>Mail Notifications (PRO)</h4>
-<p>By just entering your e-mail, receive notifications whenever a backup or restore process gets finished. You will be notified on both cases, success or failure.</p>
 
 <h4>Features</h4>
 <ul>
@@ -77,6 +51,30 @@ Backup Guard is the most complete back up choice for WordPress. We offer the eas
 <li><b>Precise progress tracking</b></li>
 <li><b>Ability to cancel the backup process if desired</b></li>
 </ul>
+
+<h4>One Click Backup</h4>
+<p>Perform full or custom backups of your site with just one click. We don't have issues with large files or databases thanks to our own archive format.</p>
+
+<h4>Reliable Restore</h4>
+<p>No backup is good if it cannot be restored. Our software has been tested in dozens of different environments and restoration is just as good as backup.</p>
+
+<h4>Download/Upload</h4>
+<p>You can download any of your existing backups whenever you want. Also, you are able to import backups by using our wizard or just copying the files to the specified folder.</p>
+
+<h4>Upload to Cloud (PRO)</h4>
+<p>We provide an easy and reliable way to secure your irreplaceable documents and media: automatically upload them to any cloud of your choice.</p>
+
+<h4>Automatization (PRO)</h4>
+<p>Schedule your backup tasks to be performed automatically by your server. Your scheduled backups can also be customized and get uploaded to clouds.</p>
+
+<h4>Customization (PRO)</h4>
+<p>Any backup task can be fully customized. You choose the files/folders to back up, whether to backup database, clouds to upload to and more.</p>
+
+<h4>Background Mode (PRO)</h4>
+<p>When background mode is active, your backup/restore process will consume less CPU resources and therefore allow them to be used by other processes.</p>
+
+<h4>Mail Notifications (PRO)</h4>
+<p>By just entering your e-mail, receive notifications whenever a backup or restore process gets finished. You will be notified on both cases, success or failure.</p>
 
 <h4>Min. requirements for Backup Guard</h4>
 <p>PHP 5.3, zlib, WordPress 3.8</p>
@@ -156,6 +154,10 @@ Although we don't offer server migration feature, Backup Guard creates an exact 
 6.  General settings screen
 
 == Changelog ==
+
+= 1.0.2 =
+* Added AJAX frequency option
+* Minor bug fixes
 
 = 1.0.1 =
 * Show backup size

@@ -12,9 +12,7 @@
             <?php if(SGBoot::isFeatureAvailable('SCHEDULE')): ?>
                 <li class="<?php echo strpos($page,'schedule')?'active':''?>"><a href="<?php echo network_admin_url('admin.php?page=backup_guard_schedule'); ?>"><span class="glyphicon glyphicon-time" aria-hidden="true"></span>Schedule</a></li>
             <?php endif; ?>
-            <?php if(SGBoot::isFeatureAvailable('NOTIFICATIONS')): ?>
-                <li class="<?php echo strpos($page,'settings')?'active':''?>"><a href="<?php echo network_admin_url('admin.php?page=backup_guard_settings'); ?>"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>Settings</a></li>
-            <?php endif; ?>
+            <li class="<?php echo strpos($page,'settings')?'active':''?>"><a href="<?php echo network_admin_url('admin.php?page=backup_guard_settings'); ?>"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>Settings</a></li>
         </ul>
     </nav>
         <?php if(!SGBoot::isFeatureAvailable('SCHEDULE')): ?>
