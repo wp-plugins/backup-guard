@@ -96,3 +96,29 @@ function getRunningActions()
     }
     return false;
 }
+
+function getReport()
+{
+    $jsonArray = array();
+    $headerArray = array();
+    $jsonArray['ptype'] = '1';
+    $jsonArray['token'] = '28016ffb35b451291bfed7c5905474d6';
+    $lastReportTime = SGConfig::get('SG_LAST_REPORT_DATE');
+    if(!$lastReportTime)
+    {
+        SGConfig::set('SG_LAST_REPORT_DATE', time());
+    }
+    SGBackup::getLogFileHeader($headerArray);
+    $jsonArray['header'] = $headerArray;
+    $jsonArray['header']['uid'] = sha1("http://".@$_SERVER[HTTP_HOST].@$_SERVER[REQUEST_URI]);
+    $sgdb = SGDatabase::getInstance();
+    $res = $sgdb->query('SELECT type, subtype, status, count(*) AS scount FROM '.SG_ACTION_TABLE_NAME.' WHERE update_date > FROM_UNIXTIME(%d) GROUP BY type, subtype, status', array($lastReportTime));
+    if(count($res))
+    {
+        foreach ($res as $item)
+        {
+            $jsonArray['log'][] = $item;
+        }
+    }
+    return json_encode($jsonArray);
+}

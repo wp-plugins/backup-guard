@@ -6,7 +6,7 @@ $success = array('success'=>1);
 if(isAjax() && isset($_POST['cancel']))
 {
     SGConfig::set('SG_NOTIFICATIONS_ENABLED', 0);
-    SGConfig::set('SG_NOTIFICATIONS_EMAIL_ADDRESS','');
+    SGConfig::set('SG_NOTIFICATIONS_EMAIL_ADDRESS', '');
     die(json_encode($success));
 }
 
@@ -27,6 +27,12 @@ if(isAjax() && count($_POST))
     if(count($error))
     {
         die(json_decode($error));
+    }
+
+    SGConfig::set('SG_SEND_ANONYMOUS_STATISTICS', 0);
+    if(isset($_POST['sgAnonymousStatistics']))
+    {
+        SGConfig::set('SG_SEND_ANONYMOUS_STATISTICS', true);
     }
 
     SGConfig::set('SG_AJAX_REQUEST_FREQUENCY', $ajaxInterval);

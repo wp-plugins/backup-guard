@@ -2,10 +2,10 @@
 Plugin Name: Backup Guard
 Contributors: BackupGuard
 Donate link: https://backup-guard.com/
-Tags: backup, back up, backup database, backup files, backup mysql, backup plugin, backup posts, cloud backup, db backup, dropbox backup, dump, ftp backup, full backup, google drive backup, page backup, restoration, restore, rollback, scheduled backup, wordpress backup, complete backup, wp backup
+Tags: backup, back up, backup database, database, file, backup files, backup mysql, backup plugin, backup posts, cloud backup, db backup, dropbox backup, dump, ftp backup, web backup, full backup, site backup, google drive backup, page backup, restoration, restore, rollback, scheduled backup, wordpress backup, complete backup, wp backup, db backup, multisite, backups
 Requires at least: 3.8
 Tested up to: 4.2.2
-Stable tag: 1.0.2
+Stable tag: 1.0.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -41,6 +41,26 @@ Backup Guard is the most complete back up choice for WordPress. We offer the eas
 </ul>
 <p>More info at <a href="https://backup-guard.com/products/backup-wordpress">https://backup-guard.com/products/backup-wordpress</a></p>
 <p>Based on our own backup technology, Backup Guard for WordPress is the best backup choice for WordPress based websites. Our goal is too simplify and minimize the backup and restore process of any WordPress based website and blog.</p>
+
+= Backup Guard Provides =
+
+* Fast Backup
+
+    We provide backup service for large websites, while keeping the clock down, giving you the fastest archivation and restoration experience.
+
+* Reliable Backup
+
+    Trusted by thousands of users, our software has been tested in dozens of different environments and backup is just as good as restoration.
+
+* Secure Backup
+
+    Thanks to our own data archivation technology, your data is saved and restored in unique ways, maintaining it encrypted and safe.
+
+Three steps
+
+1. Backup - create robust compressed archives of your files and database.
+2. Upload - upload your backups to the most popular cloud storages.
+3. Restore - rollback your data anytime you want, using a wizard. No extra knowledge is required.
 
 <h4>This is how we operate</h4>
 <ul>
@@ -131,6 +151,10 @@ Although we don't offer server migration feature, Backup Guard creates an exact 
 
 == Changelog ==
 
+= 1.0.3 =
+* Anonymous usage report added
+* Minor bug fixes
+
 = 1.0.2 =
 * Added AJAX frequency option
 * Minor bug fixes
@@ -146,7 +170,7 @@ Although we don't offer server migration feature, Backup Guard creates an exact 
 * Initial commit.
 
 == Upgrade Notice ==
-Backup Guard v.1.0.2
+Backup Guard v.1.0.3
 
 == Features ==
 <h4>One Click Backup</h4>

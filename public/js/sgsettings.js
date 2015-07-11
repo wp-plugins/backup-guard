@@ -4,7 +4,7 @@ jQuery(document).ready( function() {
 
 sgBackup.initGeneralSettingsSwitchButtons = function() {
     jQuery('.sg-switch').bootstrapSwitch();
-    jQuery('.sg-switch').on('switchChange.bootstrapSwitch', function (event, state) {
+    jQuery('.sg-email-switch').on('switchChange.bootstrapSwitch', function (event, state) {
         jQuery('.alert').remove();
         var url = jQuery(this).attr('data-remote');
         //If switch is on
@@ -30,7 +30,7 @@ sgBackup.sgsettings = function(){
     //Validation
     jQuery('.alert').remove();
 
-    if(jQuery('.sg-switch').is(":checked")){
+    if(jQuery('.sg-email-switch').is(":checked")){
         if(!isValidEmailAddress(jQuery('#sg-email').val())){
             error.push('Please enter valid email.');
         }

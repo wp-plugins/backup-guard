@@ -3,6 +3,7 @@ require_once(dirname(__FILE__).'/boot.php');
 require_once(SG_PUBLIC_INCLUDE_PATH . '/header.php');
 $isNotificationEnabled = SGConfig::get('SG_NOTIFICATIONS_ENABLED');
 $userEmail = SGConfig::get('SG_NOTIFICATIONS_EMAIL_ADDRESS');
+$isAnonymousStatisticsEnabled = SGConfig::get('SG_SEND_ANONYMOUS_STATISTICS');
 $intervalSelectElement = array(
                             '1000'=>'1 second',
                             '2000'=>'2 seconds',
@@ -30,7 +31,7 @@ $selectedInterval = SGConfig::get('SG_AJAX_REQUEST_FREQUENCY')?SGConfig::get('SG
                                     </label>
                                     <div class="col-md-3 pull-right text-right">
                                         <label class="sg-switch-container">
-                                            <input type="checkbox" name="sgIsEmailNotification" class="sg-switch" <?php echo !empty($isNotificationEnabled)?'checked="checked"':''?> data-remote="settings">
+                                            <input type="checkbox" name="sgIsEmailNotification" class="sg-switch sg-email-switch" <?php echo !empty($isNotificationEnabled)?'checked="checked"':''?> data-remote="settings">
                                         </label>
                                     </div>
                                 </div>
@@ -43,6 +44,16 @@ $selectedInterval = SGConfig::get('SG_AJAX_REQUEST_FREQUENCY')?SGConfig::get('SG
                                     </div>
                                 </div>
                             <?php endif; ?>
+                            <div class="form-group">
+                                <label class="col-md-8 sg-control-label">
+                                    <?php echo _t('Send anonymous usage statistics'); ?>
+                                </label>
+                                <div class="col-md-3 pull-right text-right">
+                                    <label class="sg-switch-container">
+                                        <input type="checkbox" name="sgAnonymousStatistics" class="sg-switch" <?php echo ($isAnonymousStatisticsEnabled !== '0')?'checked="checked"':''?>>
+                                    </label>
+                                </div>
+                            </div>
                             <div class="form-group">
                                 <label class="col-md-4 sg-control-label" for="sg-email"><?php echo _t('AJAX request frequency')?></label>
                                 <div class="col-md-8">

@@ -1,6 +1,6 @@
 <?php
 //Version
-define('SG_VERSION', '1.0.1');
+define('SG_VERSION', '1.0.3');
 
 //Paths
 define('SG_APP_PATH', realpath(dirname(__FILE__).'/../').'/');

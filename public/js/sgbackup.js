@@ -428,3 +428,7 @@ sgBackup.initBackupDeletion = function(){
         }
     });
 };
+
+sgBackup.sendReport = function(report){
+    jQuery.post("https://backup-guard.com/tms/api/", {report: report });
+};

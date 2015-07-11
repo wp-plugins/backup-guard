@@ -21,3 +21,6 @@ define('SG_NEVER_SHOW_REVIEW_POPUP', 2);
 
 //Ajax frequency
 define('SG_AJAX_DEFAULT_REQUEST_FREQUENCY', '2000'); //in miliseconds
+
+//Report Interval
+define('SG_REPORT_INTERVAL', 604800); //604800 - 1 week in seconds

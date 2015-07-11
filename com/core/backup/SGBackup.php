@@ -384,7 +384,6 @@ class SGBackup implements SGIBackupDelegate
         if ($this->databaseBackupAvailable)
         {
             self::changeActionStatus($this->actionId, SG_ACTION_STATUS_IN_PROGRESS_DB);
-            sleep(3);
             $this->backupDatabase->restore($this->databaseBackupPath);
         }
 
@@ -393,25 +392,39 @@ class SGBackup implements SGIBackupDelegate
 
     /* General methods */
 
-    private function getLogFileHeader()
+    public static function getLogFileHeader(&$confs = array())
     {
-        $content = '';
-        $content .= 'Date: '.@date('Y-m-d H:i').PHP_EOL;
-        $content .= 'SG Backup version: '.SG_VERSION.PHP_EOL;
-        $content .= 'OS: '.PHP_OS.PHP_EOL;
-        $content .= 'Server: '.@$_SERVER['SERVER_SOFTWARE'].PHP_EOL;
-        $content .= 'User agent: '.@$_SERVER['HTTP_USER_AGENT'].PHP_EOL;
-        $content .= 'PHP version: '.PHP_VERSION.PHP_EOL;
-        $content .= 'SAPI: '.PHP_SAPI.PHP_EOL;
-        $content .= 'Codepage: '.setlocale(LC_CTYPE, '').PHP_EOL;
-        $content .= 'Int size: '.PHP_INT_SIZE.PHP_EOL;
+        $confs = array();
+        $confs['sg_version'] = SG_VERSION;
+        $confs['os'] = PHP_OS;
+        $confs['server'] = @$_SERVER['SERVER_SOFTWARE'];
+        $confs['php_version'] = PHP_VERSION;
+        $confs['sapi'] = PHP_SAPI;
+        $confs['codepage'] = setlocale(LC_CTYPE, '');
+        $confs['int_size'] = PHP_INT_SIZE;
+
         if (extension_loaded('gmp')) $lib = 'gmp';
         else if (extension_loaded('bcmath')) $lib = 'bcmath';
         else $lib = 'BigInteger';
-        $content .= 'Int lib: '.$lib.PHP_EOL;
-        $content .= 'Memory limit: '.ini_get('memory_limit').PHP_EOL;
-        $content .= 'Max execution time: '.ini_get('max_execution_time').PHP_EOL;
-        $content .= 'Environment: '.SG_ENV_ADAPTER.' '.SG_ENV_VERSION.PHP_EOL;
+
+        $confs['int_lib'] = $lib;
+        $confs['memory_limit'] = ini_get('memory_limit');
+        $confs['max_execution_time'] = ini_get('max_execution_time');
+        $confs['env'] = SG_ENV_ADAPTER.' '.SG_ENV_VERSION;
+
+        $content = '';
+        $content .= 'Date: '.@date('Y-m-d H:i').PHP_EOL;
+        $content .= 'SG Backup version: '.$confs['sg_version'].PHP_EOL;
+        $content .= 'OS: '.$confs['os'].PHP_EOL;
+        $content .= 'Server: '.$confs['server'].PHP_EOL;
+        $content .= 'PHP version: '.$confs['php_version'].PHP_EOL;
+        $content .= 'SAPI: '.$confs['sapi'].PHP_EOL;
+        $content .= 'Codepage: '.$confs['codepage'].PHP_EOL;
+        $content .= 'Int size: '.$confs['int_size'].PHP_EOL;
+        $content .= 'Int lib: '.$confs['int_lib'].PHP_EOL;
+        $content .= 'Memory limit: '.$confs['memory_limit'].PHP_EOL;
+        $content .= 'Max execution time: '.$confs['max_execution_time'].PHP_EOL;
+        $content .= 'Environment: '.$confs['env'].PHP_EOL;
 
         return $content;
     }

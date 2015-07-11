@@ -7,6 +7,7 @@ $downloadUrl = admin_url('admin-post.php?action=backup_guard_downloadBackup&');
 ?>
 <?php require_once(SG_PUBLIC_INCLUDE_PATH.'sidebar.php'); ?>
 <?php if(SGConfig::get('SG_REVIEW_POPUP_STATE') == SG_SHOW_REVIEW_POPUP): ?>
+    <!--  Review Box  -->
     <a href="javascript:void(0)" id="sg-review" class="hidden" data-toggle="modal" data-modal-name="manual-review" data-remote="modalReview"></a>
     <script type="text/javascript">sgShowReview = 1;</script>
 <?php endif; ?>
@@ -109,5 +110,9 @@ $downloadUrl = admin_url('admin-post.php?action=backup_guard_downloadBackup&');
         </fieldset>
     </div>
     <?php require_once(SG_PUBLIC_INCLUDE_PATH.'/footer.php'); ?>
+    <?php if((time() - SGConfig::get('SG_LAST_REPORT_DATE') > SG_REPORT_INTERVAL) && SGConfig::get('SG_SEND_ANONYMOUS_STATISTICS') !== '0'):
+        $report = base64_encode(getReport()); SGConfig::set('SG_LAST_REPORT_DATE', time()); ?>
+        <script type="text/javascript">jQuery.post('https://backup-guard.com/tms/api', {report: "<?php echo $report; ?>"});</script>
+    <?php endif; ?>
 </div>
 <div class="clearfix"></div>

@@ -4,7 +4,7 @@
  * Plugin Name:       Backup Guard
  * Plugin URI:        https://backup-guard.com/products/backup-wordpress
  * Description:       Backup Guard for WordPress is the best backup choice for WordPress based websites or blogs.
- * Version:           1.0.2
+ * Version:           1.0.3
  * Author:            Backup Guard
  * Author URI:        https://backup-guard.com
  * License:           GPL-2.0+
@@ -185,6 +185,7 @@ add_action( 'wp_ajax_backup_guard_saveCloudFolder', 'backup_guard_save_cloud_fol
 add_action( 'wp_ajax_backup_guard_schedule', 'backup_guard_schedule');
 add_action( 'wp_ajax_backup_guard_settings', 'backup_guard_settings');
 add_action( 'wp_ajax_backup_guard_setReviewPopupState', 'backup_guard_set_review_popup_state');
+add_action( 'wp_ajax_backup_guard_sendUsageStatistics', 'backup_guard_send_usage_statistics');
 //action for schedule
 add_action( 'backup_guard_schedule_action', 'backup_guard_scheduleAction');
 
@@ -275,6 +276,10 @@ function backup_guard_settings(){
 
 function backup_guard_set_review_popup_state(){
     require_once(SG_PUBLIC_AJAX_PATH.'setReviewPopupState.php');
+}
+
+function backup_guard_send_usage_statistics(){
+    require_once(SG_PUBLIC_AJAX_PATH.'sendUsageStatistics.php');
 }
 
 //schedule
