@@ -1,0 +1,9 @@
+<?php
+
+define('SG_FEATURE_NOTIFICATIONS', 0);
+define('SG_FEATURE_SCHEDULE', 0);
+define('SG_FEATURE_STORAGE', 0);
+define('SG_FEATURE_FTP', 0);
+define('SG_FEATURE_DROPBOX', 0);
+define('SG_FEATURE_GOOGLE_DRIVE', 0);
+define('SG_FEATURE_BACKGROUND_MODE', 0);
